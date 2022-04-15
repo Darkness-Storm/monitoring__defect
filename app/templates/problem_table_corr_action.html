@@ -1,0 +1,43 @@
+<table class="table table-hover table-bordered table-striped table-sm table-responsive" id="tableAction">
+	<thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col">№</th>
+        <th scope="col">Описание</th>
+        <th scope="col">Ответственный</th>
+        <th scope="col">Срок исполнения</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Примечания</th>
+      </tr>
+    </thead>
+  <tbody id="tbody-corr-action">
+<!--     {% if problem %}
+        {% set corr_actions = problem.actions %}
+    {% elif actions %}
+        {% set corr_actions = actions %}
+    {% endif %} -->
+    {% if corr_actions %}
+  	{% for action in corr_actions|sort(attribute="serial") %}
+    	<tr id="{{action.id}}">
+    		<td>
+    			<a href="javascript:showModalAction({{action.id}})" >
+          	<img src="{{ url_for('static', filename='img/bootstrap-icons/pencil.svg') }}" alt="" width="24" height="24" title="Редактировать">
+          </a>
+        </td>
+        <td>
+          <a href="javascript:deleteCorrAction({{action.id}})">
+            <img src="{{ url_for('static', filename='img/bootstrap-icons/trash-fill.svg') }}" alt="" width="24" height="24" title="Удалить">
+          </a>
+        </td>
+    		<td>{{action.serial}}</td>
+    		<td>{{action.descr}}</td>
+    		<td>{{action.executor }}</td>
+    		<td>{{action.deadline.strftime('%d.%m.%Y') }}</td>
+    		<td>{{action.status.descr}}</td>
+    		<td>{{action.comment}}</td>
+      </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>

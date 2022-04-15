@@ -1,0 +1,90 @@
+<form id="formProblem">
+    {% if main_form %}
+        {{main_form.hidden_tag() }}
+        <input type="hidden" name="id" id="id" value="{{ problem.id if problem }}">
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.models.label }}</div>
+            <div class="col-md-10">{{ main_form.models (class="form-control form-control-sm border brython-select")}}
+                <div id="models_error" class="non-valid"></div>
+            </div>
+        </div>
+ 
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.component_id.label}}</div>
+            <div class="col-md-10">
+                <div class="input-group mb-1" >{{main_form.component_id (class="form-control form-control-sm border brython-select")}}
+                    <div class="input-group-append">
+                        <a class="btn btn-sm btn-outline-secondary" id="btnNewComp" href="javascript:getComponent(0)">
+                            <img src="{{ url_for('static', filename='img/bootstrap-icons/plus.svg') }}" alt="" width="16" height="16" title="Добавить">
+                        </a>
+                    </div>
+                </div>
+                <div id="component_error" class="non-valid"></div>
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.organisation_id.label }}</div>
+            <div class="col-md-10">
+                <div class="input-group mb-1" >{{main_form.organisation_id (class="form-control form-control-sm border brython-select") }}
+                    <div class="input-group-append">
+                        <a class="btn btn-outline-secondary btn-sm" id="btnNewOrg" href="javascript:showModalAddOrganisation()">
+                            <img src="{{ url_for('static', filename='img/bootstrap-icons/plus.svg') }}" alt="" width="16" height="16" title="Добавить">
+                        </a>
+                    </div>
+                </div>
+                <div id="organisation_error" class="non-valid"></div>
+            </div>
+            
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.short_descr.label }}</div>
+            <div class="col-md-10">{{main_form.short_descr (class="form-control form-control-sm required")}}
+                {% if main_form.short_descr.errors %}
+                    <div id="short_descr_error" class="non-valid">{{main_form.short_descr.errors}}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.detailed_descr.label }}</div>
+            <div class="col-md-10">{{main_form.detailed_descr (class="form-control form-control-sm")}}</div>
+        </div>
+        <div class="form-group row mb-1">
+                <div class="col-lg-2 col-md-4">{{ main_form.date_detection.label }}</div>
+                <div class="col-lg-2 col-md-8">{{main_form.date_detection (class="form-control form-control-sm datepicker required")}}
+                    {% if main_form.date_detection.errors %}
+                    <div id="date_detection_error" class="non-valid">{{main_form.date_detection.errors}}</div>
+                    {% endif %}
+                </div>
+                <div class="col-lg-2 col-md-4">{{ main_form.location_detection_id.label }}</div>
+                <div class="col-lg-2 col-md-8">{{main_form.location_detection_id (class="form-control form-control-sm")}}</div>
+                <div class="col-lg-1 col-md-4">{{ main_form.location_detail.label }}</div>
+                <div class="col-lg-3 col-md-8">{{main_form.location_detail (class="form-control form-control-sm") }}</div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.root_cause.label }}</div>
+            <div class="col-md-10">{{main_form.root_cause (class="form-control form-control-sm")}}</div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.main_action.label }}</div>
+            <div class="col-md-10">{{main_form.main_action (class="form-control form-control-sm")}}</div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.status_id.label}}</div>
+            <div class="col-md-3">{{main_form.status_id (class="form-control form-control-sm ")}}</div>
+            <div class="col-md-2">{{ main_form.lider.label }}</div>
+            <div class="col-md-5">{{main_form.lider (class="form-control form-control-sm")}}</div>
+        </div>
+        <div class="form-group row mb-1">
+            <div class="col-md-2">{{ main_form.comment.label }}</div>
+            <div class="col-md-10">{{main_form.comment (class="form-control form-control-sm")}}</div>
+        </div>
+        {% if not problem %}
+        <div class="form-group row justify-content-end mb-3">
+                <button class="btn btn-outline-secondary mb-2" id="btnSaveProblem" type="button" onclick="saveNewProblem()">
+                    <span> Сохранить </span>
+                    <img src="{{ url_for('static', filename='img/bootstrap-icons/save.svg') }}" alt="" width="auto" height="auto" title="Сохранить">
+                </button>
+        </div>
+        {% endif %}
+    {% endif %}
+</form>

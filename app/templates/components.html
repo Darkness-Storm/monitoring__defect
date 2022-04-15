@@ -1,0 +1,28 @@
+<div class="row ">
+  <div class="col-auto mr-auto"><a class="btn btn-sm btn-outline-secondary " href="javascript:getComponent(0)">Добавить</a></div>
+
+  <table class="table table-hover table-bordered table-striped table-sm brython-table" id="mainTable">
+    <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Номер</th>
+          <th scope="col">Наименование</th>
+        </tr>
+    </thead>
+    <tbody>
+  
+      {% for component in list_components %}
+        <tr id="{{component.id}}">
+          <td><a class="editComp" href="javascript:getComponent({{component.id}})">
+            <img src="{{ url_for('static', filename='img/bootstrap-icons/pencil.svg') }}" alt="" width="16" height="16" title="Редактировать">
+          </td>
+          <td class="number">{{component.number}}</td>
+          <td class="descr">{{component.descr}}</td>
+  
+        </tr>
+      {% endfor %}
+  </tbody>
+  </table>
+      
+
+</div>

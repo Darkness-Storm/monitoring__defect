@@ -1,0 +1,35 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabelMail">Выберите вложения для отправки</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body">
+          <form id="formAttMail">
+            <input type="hidden" name="id" id="id" value="{{problem_id}}">
+            <div class="form-group row ">
+                <div class="col-md-2"><label for="attachments">Вложения</label></div>
+                <div class="col-md-10">
+                  <select class="form-control form-control-sm" id="changeAttachments" multiple name="changeAttachments">
+                    {% if attachments %}
+                      {% for attachment in attachments %}
+                        <option value={{attachment.id}}>{{attachment.get_filename()}}</option>
+                      {% endfor %}
+                    {% endif %}
+                  </select>
+                </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+            <a id="btnSendMailProblem" class="btn btn-secondary" href="javascript:sendAttForMail()">Отправить</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+    </div>
+</div>

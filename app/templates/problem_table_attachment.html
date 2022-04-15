@@ -1,0 +1,26 @@
+<table class="table table-hover table-striped table-sm table-responsive" id="tableAttProblem">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Вложение</th>
+      </tr>
+    </thead>
+  <tbody>
+    {% if attachments %}
+    {% for attachment in attachments %}
+      <tr id="{{attachment.id}}">
+          <td>
+            <a href="javascript:deleteAttachment({{attachment.id}}, false, false)">
+              <img  src="{{ url_for('static', filename='img/bootstrap-icons/trash-fill.svg') }}" alt="" width="24" height="24" title="Удалить">
+            </a>
+          </td>
+          <td>
+            <a href="{{ url_for('common.send_attachment', id=attachment.id) }}">
+              {{attachment.get_filename() }}
+            </a>
+          </td>
+      </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>

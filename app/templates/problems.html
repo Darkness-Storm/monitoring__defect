@@ -1,0 +1,47 @@
+<div class="row ">
+  <div class="col-auto mr-auto"><a class="btn btn-outline-secondary " id="btnAddProblem" href="javascript:addProblem()">Добавить</a>
+    <a href="javascript:showProblem({{50000}})" id="link50000">
+      <img src="{{ url_for('static', filename='img/bootstrap-icons/pencil.svg') }}" alt="" width="24" height="24" title="Редактировать">Test
+    </a>
+    <a href="{{ url_for('common.send_attachment', id=100000) }}" >
+      <img src="{{ url_for('static', filename='img/bootstrap-icons/pencil.svg') }}" alt="" width="24" height="24" title="Редактировать">Test att
+    </a>
+  </div>
+
+  <table class="table table-hover table-bordered table-striped table-sm brython-table" id="mainTable">
+    <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Модель</th>
+          <th scope="col">Компонент</th>
+          <th scope="col">Поставщик</th>
+          <th scope="col">Описание</th>
+          <th scope="col">Место</th>
+          <th scope="col">Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for problem in problems %}
+        <tr id="{{problem.id}}">
+          <th scope="row">
+            <a href="javascript:showProblem({{problem.id}})" id="link{{problem.id}}">
+              <img src="{{ url_for('static', filename='img/bootstrap-icons/pencil.svg') }}" alt="" width="24" height="24" title="Редактировать">
+            </a>
+          </th>
+          <td>
+              {{problem.get_models_to_string()}}
+          </td>
+          <td>
+            {% if problem.component %}
+              {{problem.component.get_full_name()}}
+            {% endif %}
+          </td>
+          <td>{{problem.organisation.get_short_name()}}</td>
+          <td>{{problem.short_descr|default('', true)|truncate(180)}}</td>
+          <td>{{ problem.location_detection.descr|default('')}}</td>
+          <td>{{problem.status.descr}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,35 @@
+
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditLabel">Компонент: {{form.number.data}} - {{form.descr.data}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalBody">
+      <form id="formEditComponent">
+        {{form.hidden_tag() }}
+        <input type="hidden" name="component_id" id="component_id" value="{{component_id}}">
+        <div class="form-group row">
+          {{form.number.label (class="col-lg-2 col-form-label")}}
+          <div class="col-lg-10">
+            {{form.number (class="form-control form-control-sm")}}
+          </div>
+        </div>
+        <div class="form-group row">
+          {{form.descr.label (class="col-lg-2 col-form-label")}}
+          <div class="col-lg-10">
+            {{form.descr (class="form-control form-control-sm")}}
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button id="btnDelete" type="button" class="btn btn-secondary">Удалить компонент</button>
+      <button id="btnSubmit" type="button" class="btn btn-secondary">Отправить</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+      
+    </div>
+  </div>
+</div>

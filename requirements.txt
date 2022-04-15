@@ -1,0 +1,11 @@
+flask>=1.1
+flask_wtf==0.14
+wtforms==2.3
+peewee>=3.13
+pythonnet
+pywebview
+cefpython3
+pyinstaller
+pywin32
+xlsxwriter
+pytest

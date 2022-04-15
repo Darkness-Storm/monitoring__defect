@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<form id="formReport" novalidate action="{{ url_for('common.reports') }}" method="post">
+    {% if main_form %}
+        {{main_form.hidden_tag() }}
+        <input type="hidden" name="id" id="id" value="{{ problem.id if problem }}">
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_reports.label }}</div>
+            <div class="col-md-10">{{main_form.r_reports (class="form-control form-control-sm form-select")}}</div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_date_start.label }}</div>
+            <div class="col-md-4">{{main_form.r_date_start (class="form-control form-control-sm datepicker")}}</div>
+            <div class="col-md-2">{{ main_form.r_date_end.label }}</div>
+            <div class="col-md-4">{{main_form.r_date_end (class="form-control form-control-sm datepicker")}}</div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_models.label }}</div>
+            <div class="col-md-10">{{ main_form.r_models }}</div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_component.label }}</div>
+            <div class="col-md-10">{{main_form.r_component (class="form-control form-control-sm form-select")}}</div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_organisation.label }}</div>
+            <div class="col-md-10">{{main_form.r_organisation (class="form-control form-control-sm form-select")}}</div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_location_detection.label }}</div>
+            <div class="col-md-4">{{main_form.r_location_detection}}</div>
+            <div class="col-md-2">{{ main_form.r_location_detail.label }}</div>
+            <div class="col-md-4">{{main_form.r_location_detail}}</div>
+        </div>
+        <div class="form-group row ">
+            <div class="col-md-2">{{ main_form.r_status.label }}</div>
+            <div class="col-md-4">{{main_form.r_status (class="form-control form-control-sm form-select")}}</div>
+            <div class="col-md-2">{{ main_form.r_lider.label }}</div>
+            <div class="col-md-4">{{main_form.r_lider (class="form-control form-control-sm")}}</div>
+
+        </div>
+        
+    {% endif %}
+        <div class="form-group row">
+            <button type="submit" class="btn btn-outline-secondary">Сформировать</button>
+            <a id="btnSubmit" href="javascript:LoadReport()" class="btn btn-outline-secondary"> Сформировать JS</a>
+        </div>
+</form>
+{% endblock %}

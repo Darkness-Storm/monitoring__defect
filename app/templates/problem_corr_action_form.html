@@ -1,0 +1,60 @@
+<div class="modal-dialog modal-xl">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="modalEditLabel">Добавить мероприятие</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="formCorrAction"> 
+            {% if form_corr %}                     
+            {{form_corr.hidden_tag() }}
+                <input type="hidden" name="id" id="id" value="{{action_id if action_id}}">
+                {{form_corr.problem (type="hidden" ) }}
+                <div class="form-row">
+                    <div class="form-group col-sm-1">
+                        {{form_corr.serial.label}}
+                        {{form_corr.serial (class="form-control form-control-sm")}}
+                    </div>
+                    <div class="form-group col-sm-11">  
+                        {{form_corr.descr.label}}
+                        {{form_corr.descr (class="form-control form-control-sm")}}
+                        <div id="descr_error" class="non-valid"></div>
+                    </div>
+                </div>    
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        {{form_corr.executor.label}}
+                        {{form_corr.executor (class="form-control form-control-sm")}}
+                        <div id="executor_error" class="non-valid"></div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form_corr.deadline.label}}
+                        {{form_corr.deadline (class="form-control form-control-sm datepicker required") }}
+                        <div id="deadline_error" class="non-valid"></div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        {{form_corr.status_id.label}}
+                        {{form_corr.status_id (class="form-control form-control-sm form-select")}}
+                        <div id="status_id_error" class="non-valid"></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        {{form_corr.comment.label}}
+                        {{form_corr.comment (class="form-control form-control-sm")}}
+                        <div id="comment_error" class="non-valid"></div>
+                    </div>      
+                </div>
+            {% endif %}
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <a class="btn btn-secondary" href="javascript:sendCorrAction()">Отправить</a>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    
+    {% if title %}
+    <title>{{title}}</title>
+    {% endif %}
+  </head>
+  <body style="padding-top: 75px; padding-bottom: 75px">
+    <div class="container-lg container-fluid">
+        <h1>Произошла непредвиденная ошибка</h1>
+        <h3>Администратор был уведомлен. Извините за доставленные неудобства!</h3>
+        <br>
+        <h3>Описание ошибки</h3>
+        <p>{{error if error}}</p>
+        <p><a class="btn btn-outline-secondary" href="{{url_for('common.index')}}">На главную </a></p>
+    </div><!--Этот див из базового шаблона-->
+
+
+  </body>
+</html>
+
+
+

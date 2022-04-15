@@ -1,0 +1,24 @@
+<p><b>Описание: </b> {{problem.short_descr}} <p>
+
+<p><b>Компонент: </b>{{ problem.component.get_full_name() }} ({{problem.organisation.get_short_name()}}) </p>
+    
+{% if problem.detailed_descr %}
+<p><b>Подробное описание: </b>{{problem.detailed_descr}}</p>
+{% endif %}
+<p><b>Место обнаружения: </b>{{problem.location_detection.descr}} ({{problem.location_detail}}).</p>
+<p><b>Коренная причина: </b>{{problem.root_cause}}</p>
+<p><b>Статус проблемы: </b>{{problem.status.descr}}. <b>Ответственный: </b>{{problem.lider}}.</p>
+
+{% if corr_action %}
+    <table bordercolor='black' border='1' cellspacing='0'><caption><b>Корректирующие действия</b></caption>
+    <tr><th>№ п/п</th><th>Содержание</th><th>Исполнители</th><th>Срок</th><th>Статус</th><th>Комментарий</th></tr>
+    <tbody>
+    {% for action in corr_action %}
+        <tr>
+            <td>{{action.serial}}</td><td>{{action.descr}}</td><td>{{action.executor}}</td><td>{{action.deadline.strftime('%d.%m.%Y') }}</td><td>{{action.status.descr}}</td><td>{{action.comment}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endif %}
+
